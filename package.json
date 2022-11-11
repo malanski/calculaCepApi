@@ -4,16 +4,17 @@
     "description": "",
     "main": "calculaCepApi.js",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "nodemon server.js"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon server.js"
     },
     "keywords": [],
     "author": "ulisses malanski",
     "license": "ISC",
     "devDependencies": {
-      "nodemon": "^2.0.20"
+        "nodemon": "^2.0.20"
     },
     "dependencies": {
-      "node-fetch": "^2.6.7"
+        "express": "^4.18.2",
+        "node-fetch": "^2.6.7"
     }
-  }
+}
