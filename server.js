@@ -12,7 +12,6 @@ const {
 
 const server = express()
 
-// const server = http.createServer(async (req, res) => {
 server.get('/endereco/cep=:cep', async (req, res) => {
     try {
 
@@ -22,19 +21,8 @@ server.get('/endereco/cep=:cep', async (req, res) => {
 
         res.end(JSON.stringify({endereco}));
 
-        // if (pathname && pathname.includes('/endereco')) {
-        //     res.end(JSON.stringify({endereco}));
-        // } 
-        // if (pathname && pathname.includes('/frete')) {
-        //     const prazo = await prazoEntrega(cep);
-        //     const frete = await valorEntrega(cep);
-        //     res.end(JSON.stringify({ 'prazo entrega': `${prazo}`, 'valor frete': `${frete}`}));
-        // } 
-
     } catch (error) {
-        // res
-        // .writeHead(error.status ?? 500, { 'Content-Type': 'text/html; charset=utf-8' })
-        // .end(JSON.stringify({ message: error.message}));   
+
         res.status(400).json({
             message: error.message
         });

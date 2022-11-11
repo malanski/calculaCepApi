@@ -1,4 +1,7 @@
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
+const Axios = require('axios');
+
+
 const CEPSTORE = '05421-001';
 const cdService = '41106';
 
@@ -25,27 +28,22 @@ const bodyRequest = (cepDestination) => {
 const customError = (message, status) => ({ message, status});
 
 const consultaCEP = async (cep) => {
-    const response = await fetch(
-        `https://viacep.com.br/ws/${cep}/json/`
-    );
-
-    if (!response.ok) {
-        throw customError('CEP inválido', 400)
+    
+    const response = await Axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+    if (!response.data) {
+        throw customError('CEP inválido',400)
     }
-
-    return response.json();
+    return response.data;
 }
 
 const requestApiCorreios = async (cep) => {
     const url = bodyRequest(cep);
 
-    const response = await fetch(
+    const response = await Axios.get(
         'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?' + new URLSearchParams(url).toString()
     );
-
-    const xml = await response.text();
-    
-    return xml;
+       
+    return response.data;
 }
 
 const infoEndereco = async (cep) => {
